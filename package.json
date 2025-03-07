@@ -1,0 +1,26 @@
+{
+  "name": "reservation",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --watch --turbopack ",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "mongodb": "^6.14.2",
+    "next": "^15.2.1",
+    "next-auth": "^4.24.11",
+    "react": "^19.0.0",
+    "react-datepicker": "^8.1.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  }
+}
