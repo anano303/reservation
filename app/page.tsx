@@ -13,6 +13,9 @@ export default function Home() {
       <li>
         <Link href="/admin">ადმინი</Link>
       </li>
+      <li>
+        <Link href="/products">პროდუქტების დაჯავშნა</Link>
+      </li>
     </main>
   );
 }
