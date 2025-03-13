@@ -1,10 +1,13 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import "./register.css"; // Import the CSS file
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const router = useRouter();
 
   async function handleRegister(e: React.FormEvent) {
     e.preventDefault();
@@ -15,19 +18,24 @@ export default function Register() {
     });
 
     const data = await res.json();
-    setMessage(data.message || data.error);
+    if (res.ok) {
+      router.push("/login");
+    } else {
+      setMessage(data.message || data.error);
+    }
   }
 
   return (
-    <main>
-      <h1>რეგისტრაცია</h1>
-      <form onSubmit={handleRegister}>
+    <main className="register-main">
+      <h1 className="register-title">რეგისტრაცია</h1>
+      <form onSubmit={handleRegister} className="register-form">
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className="register-input"
         />
         <input
           type="password"
@@ -35,10 +43,13 @@ export default function Register() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className="register-input"
         />
-        <button type="submit">რეგისტრაცია</button>
+        <button type="submit" className="register-button">
+          რეგისტრაცია
+        </button>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p className="register-message">{message}</p>}
     </main>
   );
 }

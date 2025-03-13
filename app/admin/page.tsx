@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import "./admin.css"; // Import the CSS file
 
 // ვქმნით პროდუქტის ტიპს
 type Product = {
@@ -39,15 +40,16 @@ export default function Admin() {
   }, []);
 
   return (
-    <main>
-      <h1>ადმინ პანელი</h1>
-      <form onSubmit={addProduct}>
+    <main className="admin-main">
+      <h1 className="admin-title">ადმინ პანელი</h1>
+      <form onSubmit={addProduct} className="admin-form">
         <input
           type="text"
           placeholder="პროდუქტის სახელი"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
+          className="admin-input"
         />
         <input
           type="number"
@@ -55,14 +57,15 @@ export default function Admin() {
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           required
+          className="admin-input"
         />
-        <button type="submit">დამატება</button>
+        <button type="submit" className="admin-button">დამატება</button>
       </form>
 
-      <h2>პროდუქტების სია</h2>
-      <ul>
+      <h2 className="admin-subtitle">პროდუქტების სია</h2>
+      <ul className="admin-products-list">
         {products.map((product) => (
-          <li key={product._id}>
+          <li key={product._id} className="admin-product-item">
             {product.name} - {product.price}₾
           </li>
         ))}

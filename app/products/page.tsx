@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "./products.css"; // Import the CSS file
 
 // ვქმნით ტიპებს
 type Product = {
@@ -72,15 +73,15 @@ export default function Products() {
   }
 
   return (
-    <main>
-      <h1>პროდუქტები</h1>
-      <ul>
+    <main className="products-main">
+      <h1 className="products-title">პროდუქტები</h1>
+      <ul className="products-list">
         {products.map((product) => {
           const reservedDates =
             reservations[product._id]?.map((d) => new Date(d)) || [];
 
           return (
-            <li key={product._id}>
+            <li key={product._id} className="product-item">
               {product.name} - {product.price}₾
               <DatePicker
                 selected={selectedDate}
@@ -88,21 +89,16 @@ export default function Products() {
                 excludeDates={reservedDates} // 📌 აქ ვაძლევთ უკვე დაკავებულ თარიღებს
                 dateFormat="yyyy-MM-dd"
                 placeholderText="აირჩიე თარიღი"
+                className="product-datepicker"
               />
               <button
                 onClick={() => reserveProduct(product._id)}
                 disabled={!selectedDate || reservedDates.includes(selectedDate)}
-                style={{
-                  backgroundColor:
-                    !selectedDate || reservedDates.includes(selectedDate)
-                      ? "red"
-                      : "green",
-                  color: "white",
-                  cursor:
-                    !selectedDate || reservedDates.includes(selectedDate)
-                      ? "not-allowed"
-                      : "pointer",
-                }}
+                className={`product-button ${
+                  !selectedDate || reservedDates.includes(selectedDate)
+                    ? "disabled"
+                    : ""
+                }`}
               >
                 {!selectedDate
                   ? "აირჩიე თარიღი"
